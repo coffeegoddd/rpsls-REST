@@ -1,0 +1,37 @@
+{
+  "name": "rpsls-REST",
+  "version": "1.0.0",
+  "description": "Implementation of rock paper scissors lizard spock using RESTful express server",
+  "main": "index.js",
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true
+  },
+  "scripts": {
+    "test": "jest --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coffeegoddd/rpsls-REST.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coffeegoddd/rpsls-REST/issues"
+  },
+  "homepage": "https://github.com/coffeegoddd/rpsls-REST#readme",
+  "dependencies": {
+    "jest": "^24.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.4",
+    "webpack-cli": "^3.2.3"
+  }
+}
