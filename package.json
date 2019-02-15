@@ -8,8 +8,10 @@
     "collectCoverage": true
   },
   "scripts": {
-    "test": "jest --passWithNoTests",
+    "test": "jest --detectOpenHandles",
     "react-dev": "webpack --watch",
+    "install:db": "cd db/ && npm install",
+    "seed:db": "cd db/ && npm run seed",
     "install:static": "cd www/static-server && npm install",
     "start:static": "cd www/static-server && npm run server-dev"
   },
@@ -26,6 +28,7 @@
   "homepage": "https://github.com/coffeegoddd/rpsls-REST#readme",
   "dependencies": {
     "jest": "^24.1.0",
+    "mongodb": "^3.1.13",
     "react": "^16.8.2",
     "react-dom": "^16.8.2"
   },
@@ -35,6 +38,11 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.4",
     "webpack-cli": "^3.2.3"
