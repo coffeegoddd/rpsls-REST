@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "jest --passWithNoTests",
+    "react-dev": "webpack --watch",
     "install:static": "cd www/static-server && npm install",
     "start:static": "cd www/static-server && npm run server-dev"
   },
@@ -24,7 +25,9 @@
   },
   "homepage": "https://github.com/coffeegoddd/rpsls-REST#readme",
   "dependencies": {
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
