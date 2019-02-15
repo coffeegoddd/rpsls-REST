@@ -8,7 +8,9 @@
     "collectCoverage": true
   },
   "scripts": {
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "install:static": "cd www/static-server && npm install",
+    "start:static": "cd www/static-server && npm run server-dev"
   },
   "repository": {
     "type": "git",
