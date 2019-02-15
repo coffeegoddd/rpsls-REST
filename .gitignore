@@ -63,3 +63,5 @@ typings/
 .env
 
 client/public/dist/bundle.js
+
+db/node_modules
