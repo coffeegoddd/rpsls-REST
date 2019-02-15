@@ -8,7 +8,7 @@
     "collectCoverage": true
   },
   "scripts": {
-    "test": "jest --passWithNoTests",
+    "test": "jest --detectOpenHandles",
     "react-dev": "webpack --watch",
     "install:db": "cd db/ && npm install",
     "seed:db": "cd db/ && npm run seed",

@@ -1,4 +1,30 @@
-const players = [
+const dummy = {
+  Isla: {
+    username: 'isla',
+    password: 'mete0r',
+    sessionId: 'hello12',
+    wins: 2,
+    losses: 1,
+    balance: 100,
+  },
+  Upton: {
+    username: 'upton',
+    password: 'mete0r',
+    sessionId: 'hello19',
+    wins: 3,
+    losses: 3,
+    balance: 100,
+  },
+  Dennis: {
+    username: 'dennis',
+    password: 'mete0r',
+    sessionId: 'hello40',
+    wins: 3,
+    losses: 99,
+    balance: 100,
+  },
+};
+const dummies = [
   {
     username: 'brian',
     password: 'mete0r',
@@ -49,4 +75,4 @@ const players = [
   },
 ];
 
-module.exports = players;
+module.exports = { dummy, dummies };
