@@ -3,6 +3,7 @@ const path = require('path');
 
 const config = {
   entry: './client/src/index.jsx',
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, './client/public/dist'),
     filename: 'bundle.js'
