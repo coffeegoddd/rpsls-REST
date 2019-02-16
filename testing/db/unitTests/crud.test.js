@@ -17,8 +17,7 @@ let client;
 let players;
 
 describe('Test CRUD methods for REST application', () => {
-  beforeAll(async () => {
-
+  beforeAll(async () => {  
     // connect to mongo
 
     client = await new MongoClient(url, {
@@ -38,8 +37,8 @@ describe('Test CRUD methods for REST application', () => {
 
   });
   afterAll(async (done) => {
-    // await client.dropCollection('players');
     await client.db().dropCollection('players');
+    await client.db().dropDatabase();
     await client.close(done);
   });
 
@@ -124,6 +123,7 @@ describe('Test CRUD methods for REST application', () => {
 
     // fetch his info from the db
     const Player = await getPlayerInfo(newUpton.username, players);
+
     const {
       sessionId,
       wins,
