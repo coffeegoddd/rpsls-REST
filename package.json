@@ -15,7 +15,8 @@
     "install:static": "cd www/static-server && npm install",
     "start:static": "cd www/static-server && npm run server-dev",
     "install:api": "cd www/api && npm install",
-    "start:api": "cd www/api && npm run server-dev"
+    "start:api": "cd www/api && npm run server-dev",
+    "install:all": "npm install && npm run install:db && run npm install:static && npm run install:api"
   },
   "repository": {
     "type": "git",
