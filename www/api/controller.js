@@ -25,7 +25,11 @@ module.exports = {
     const db = req.DB || mongoUtil.getDb();
     const players = db.collection('players');
     const data = await getAllPlayers(players);
-    res.status(200).send(data);
+    if (data) {
+      res.status(200).send(data);
+    } else {
+      res.status(404).send('content not found');
+    }
   },
   newPlayer: async (req, res) => {
     const newPlayer = req.body;
