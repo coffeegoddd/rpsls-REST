@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const assert = require('assert');
 
 module.exports = {
@@ -16,16 +17,21 @@ module.exports = {
     });
     return data;
   },
-  updatePlayerInfo: async (_id, newPlayerInfo, collection) => {
-    const data = await collection.updateOne({ _id }, { $set: newPlayerInfo }, (err, result) => {
+  updatePlayerInfo: async (idString, newPlayerInfo, collection) => {
+    const data = await collection.updateOne({
+      _id: ObjectId(idString),
+    },
+    {
+      $set: newPlayerInfo,
+    }, (err, result) => {
       assert.equal(null, err);
       assert.equal(1, result.matchedCount);
       assert.equal(1, result.modifiedCount);
     });
     return data;
   },
-  deletePlayer: async (_id, collection) => {
-    const data = await collection.deleteOne({ _id }, (err, result) => {
+  deletePlayer: async (idString, collection) => {
+    const data = await collection.deleteOne({ _id: ObjectId(idString) }, (err, result) => {
       assert.equal(null, err);
       assert.equal(1, result.deletedCount);
     });

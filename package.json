@@ -8,12 +8,15 @@
     "collectCoverage": true
   },
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "jest --detectOpenHandles --runInBand",
     "react-dev": "webpack --watch",
     "install:db": "cd db/ && npm install",
     "seed:db": "cd db/ && npm run seed",
     "install:static": "cd www/static-server && npm install",
-    "start:static": "cd www/static-server && npm run server-dev"
+    "start:static": "cd www/static-server && npm run server-dev",
+    "install:api": "cd www/api && npm install",
+    "start:api": "cd www/api && npm run server-dev",
+    "install:all": "npm install && npm run install:db && npm run install:static && npm run install:api"
   },
   "repository": {
     "type": "git",
@@ -27,10 +30,14 @@
   },
   "homepage": "https://github.com/coffeegoddd/rpsls-REST#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
     "jest": "^24.1.0",
     "mongodb": "^3.1.13",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react-dom": "^16.8.2",
+    "supertest": "^3.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
