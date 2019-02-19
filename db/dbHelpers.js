@@ -30,8 +30,8 @@ module.exports = {
     });
     return data;
   },
-  deletePlayer: async (_id, collection) => {
-    const data = await collection.deleteOne({ _id }, (err, result) => {
+  deletePlayer: async (idString, collection) => {
+    const data = await collection.deleteOne({ _id: ObjectId(idString) }, (err, result) => {
       assert.equal(null, err);
       assert.equal(1, result.deletedCount);
     });

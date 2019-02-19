@@ -30,6 +30,9 @@
   },
   "homepage": "https://github.com/coffeegoddd/rpsls-REST#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
     "jest": "^24.1.0",
     "mongodb": "^3.1.13",
     "react": "^16.8.2",

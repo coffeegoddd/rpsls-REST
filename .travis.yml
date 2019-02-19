@@ -9,4 +9,5 @@ install:
   - npm run install:all
 
 script:
+  - npm run start:api
   - npm test

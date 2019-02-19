@@ -14,6 +14,7 @@ app.use(parser.json());
 app.use(parser.urlencoded({
   extended: true,
 }));
+
 app.use('/api', router);
 
 module.exports = app;
