@@ -1,5 +1,6 @@
 const dummies = [
   {
+    playerNumber: null,
     username: 'brian',
     password: 'mete0r',
     sessionId: 'hello1',
@@ -9,6 +10,7 @@ const dummies = [
     balance: 100,
   },
   {
+    playerNumber: null,
     username: 'kelly',
     password: 'mete0r',
     sessionId: 'hello2',
@@ -18,6 +20,7 @@ const dummies = [
     balance: 100,
   },
   {
+    playerNumber: null,
     username: 'sarah',
     password: 'mete0r',
     sessionId: 'hello3',
@@ -27,6 +30,7 @@ const dummies = [
     balance: 100,
   },
   {
+    playerNumber: null,
     username: 'cliff',
     password: 'mete0r',
     sessionId: 'hello4',
@@ -36,6 +40,7 @@ const dummies = [
     balance: 100,
   },
   {
+    playerNumber: null,
     username: 'max',
     password: 'mete0r',
     sessionId: 'hello5',
@@ -45,6 +50,7 @@ const dummies = [
     balance: 100,
   },
   {
+    playerNumber: null,
     username: 'hubert',
     password: 'mete0r',
     sessionId: 'hello6',
@@ -54,6 +60,7 @@ const dummies = [
     balance: 100,
   },
   {
+    playerNumber: null,
     username: 'dennis',
     password: 'mete0r',
     sessionId: 'hello40',
@@ -63,6 +70,7 @@ const dummies = [
     balance: 100,
   },
   {
+    playerNumber: null,
     username: 'abc',
     password: 'mete0r',
     sessionId: 'hello41',
@@ -72,6 +80,7 @@ const dummies = [
     balance: 100,
   },
   {
+    playerNumber: null,
     username: 'def',
     password: 'mete0r',
     sessionId: 'hello42',
@@ -81,6 +90,7 @@ const dummies = [
     balance: 100,
   },
   {
+    playerNumber: null,
     username: 'hij',
     password: 'mete0r',
     sessionId: 'hello43',

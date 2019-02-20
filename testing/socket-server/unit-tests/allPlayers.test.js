@@ -2,6 +2,14 @@ const AllPlayers = require('../../../www/socket-server/src/utils/allPlayers');
 const dummies = require('./sampleData');
 
 describe('Test AllPlayers class for application', () => {
+  it('dummies should have the required properties', () => {
+    const { username, sessionId, socketId } = dummies[0];
+    expect(Object.keys(dummies[0]).length).toBe(8);
+    expect(username).toBeDefined();
+    expect(sessionId).toBeDefined();
+    expect(socketId).toBeDefined();
+  });
+
   it('should make sure players have the right properties', () => {
     const players = new AllPlayers();
     const [first] = dummies;
@@ -64,7 +72,8 @@ describe('Test AllPlayers class for application', () => {
     expect(players.qCount()).toBe(1);
 
     // a player leaves, the open slot is filled
-    players.removePlayer = { playerNumber: 1 };
+    // players.removePlayer = { playerNumber: 1 };
+    players.removePlayer = first;
 
     expect(players.qCount()).toBe(1);
     expect(players.getP1).toBe(null);
@@ -81,7 +90,8 @@ describe('Test AllPlayers class for application', () => {
 
     expect(players.qCount()).toBe(1);
 
-    players.removePlayer = { playerNumber: 2 };
+    // players.removePlayer = { playerNumber: 2 };
+    players.removePlayer = second;
 
     expect(players.qCount()).toBe(1);
     expect(players.getP1).toBe(third);
@@ -109,7 +119,7 @@ describe('Test AllPlayers class for application', () => {
     expect(players.getP2).toBe(second);
 
     // add a playerNumber to first player
-    first.playerNumber = 1;
+    // first.playerNumber = 1;
 
     players.removePlayer = first;
 
@@ -183,13 +193,15 @@ describe('Test AllPlayers class for application', () => {
     expect(players.getP2).toBe(second);
 
     // player 1 loses and loser object is valid
-    players.cycle({ playerNumber: 1 });
+    // players.cycle({ playerNumber: 1 });
+    players.cycle(first);
     expect(players.qCount()).toBe(1);
     expect(players.getP1).toBe(third);
     expect(players.getP2).toBe(second);
 
     // player 1 loses and loser object is invalid
-    expect(players.cycle({ player: 1 }))
+    // expect(players.cycle({ player: 1 }))
+    expect(players.cycle(first))
       .toBe('loser object must have property playerNumber');
 
     // player 1 loses, loser object valid, but number invalid
@@ -216,7 +228,8 @@ describe('Test AllPlayers class for application', () => {
     expect(players.getP2).toBe(second);
 
     // player 1 loses
-    players.cycle({ playerNumber: 1 });
+    // players.cycle({ playerNumber: 1 });
+    players.cycle(first);
 
     expect(players.qCount()).toBe(4);
     expect(players.getP1).toBe(third);
@@ -225,7 +238,8 @@ describe('Test AllPlayers class for application', () => {
     expect(players.getP2).toBe(second);
 
     // player 2 loses
-    players.cycle({ playerNumber: 2 });
+    // players.cycle({ playerNumber: 2 });
+    players.cycle(second);
     expect(players.qCount()).toBe(4);
     expect(players.getP1).toBe(third);
     expect(players.getP2).toBe(fourth);
@@ -247,13 +261,14 @@ describe('Test AllPlayers class for application', () => {
     expect(players.getP2).toBe(second);
 
     // player 1 loses
-    players.cycle({ playerNumber: 1 });
+    players.cycle(first);
     expect(players.qCount()).toBe(0);
     expect(players.getP1).toBe(first);
     expect(players.getP2).toBe(second);
 
     // player 2 loses
-    players.cycle({ playerNumber: 2 });
+    // players.cycle({ playerNumber: 2 });
+    players.cycle(second);
     expect(players.qCount()).toBe(0);
     expect(players.getP1).toBe(first);
     expect(players.getP2).toBe(second);
@@ -298,8 +313,8 @@ describe('Test AllPlayers class for application', () => {
 
 
     // add playerNumber property to relevant players
-    first.playerNumber = 1;
-    second.playerNumber = 2;
+    // first.playerNumber = 1;
+    // second.playerNumber = 2;
 
     // player 1 disconnects
     players.removeDisconnector(first);

@@ -2,10 +2,22 @@
 
 function Queue() {
   const storage = [];
+  // check if queue is empty
   this.empty = () => !storage.length;
+
+  // add player
   this.enqueue = player => storage.push(player);
+
+  // remove player
   this.dequeue = () => storage.shift();
+
+  // number of players in queue
   this.count = () => storage.length;
+
+  // replica queue with only players usernames
+  this.players = () => storage.map(player => player.username);
+
+  // remove player from queue wherever he is
   this.kick = (socketId) => {
     const players = storage.length;
     for (let i = 0; i < players; i += 1) {
@@ -15,12 +27,16 @@ function Queue() {
     }
     return 'disconnected player not in queue';
   };
+
+  // show next in line
   this.front = () => {
     if (this.empty()) {
       return 'the queue is empty';
     }
     return storage[0];
   };
+
+  // print all players in queue to console
   this.print = () => storage.forEach(player => console.log(player));
 }
 
@@ -47,6 +63,9 @@ class AllPlayers {
   }
 
   enQ(player) {
+    // reset playerNumbers of previous players
+    player.playerNumber = null;
+
     const { username, sessionId, socketId } = player;
     if (username && sessionId && socketId) {
       return this.queue.enqueue(player);
@@ -60,6 +79,10 @@ class AllPlayers {
 
   qCount() {
     return this.queue.count();
+  }
+
+  current() {
+    return this.queue.players();
   }
 
   kick(disconnectorSocketId) {
@@ -110,10 +133,14 @@ class AllPlayers {
     const p1 = this.getP1;
     const p2 = this.getP2;
     if (!p1 && !this.qEmpty()) {
-      this.setP1 = this.deQ();
+      const player = this.deQ();
+      player.playerNumber = 1;
+      this.setP1 = player;
     }
     if (!p2 && !this.qEmpty()) {
-      this.setP2 = this.deQ();
+      const player = this.deQ();
+      player.playerNumber = 2;
+      this.setP2 = player;
     }
   }
 
