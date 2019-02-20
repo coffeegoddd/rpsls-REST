@@ -2,7 +2,7 @@ const request = require('supertest');
 const { MongoClient } = require('mongodb');
 const express = require('express');
 const parser = require('body-parser');
-const router = require('../../../www/api/routes');
+const router = require('../../../www/api/src/routes');
 const dummies = require('./sampleData');
 
 const app = express();

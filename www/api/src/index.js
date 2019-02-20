@@ -1,7 +1,7 @@
 const http = require('http');
 const assert = require('assert');
 const app = require('./app');
-const mongoUtil = require('../../db/index');
+const mongoUtil = require('../../../db/index');
 
 require('dotenv').config();
 
