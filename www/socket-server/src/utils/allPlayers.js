@@ -5,17 +5,18 @@ function Queue() {
   this.empty = () => !storage.length;
   this.enqueue = player => storage.push(player);
   this.dequeue = () => storage.shift();
+  this.count = () => storage.length;
   this.kick = (socketId) => {
     const players = storage.length;
     for (let i = 0; i < players; i += 1) {
-      if (players[i].socketId === socketId) {
+      if (storage[i].socketId === socketId) {
         return storage.splice(i, 1);
       }
     }
     return 'disconnected player not in queue';
   };
   this.front = () => {
-    if (!this.empty()) {
+    if (this.empty()) {
       return 'the queue is empty';
     }
     return storage[0];
@@ -46,11 +47,19 @@ class AllPlayers {
   }
 
   enQ(player) {
-    return this.queue.enqueue(player);
+    const { username, sessionId, socketId } = player;
+    if (username && sessionId && socketId) {
+      return this.queue.enqueue(player);
+    }
+    return 'username, sessionId, socketId are required';
   }
 
   deQ() {
     return this.queue.dequeue();
+  }
+
+  qCount() {
+    return this.queue.count();
   }
 
   kick(disconnectorSocketId) {
@@ -67,11 +76,11 @@ class AllPlayers {
 
   // methods for players
 
-  get playerOne() {
+  get getP1() {
     return this.players[1];
   }
 
-  get playerTwo() {
+  get getP2() {
     return this.players[2];
   }
 
@@ -79,62 +88,78 @@ class AllPlayers {
     return this.players;
   }
 
-  set addPlayer(newPlayer) {
-    const p1 = this.playerOne;
-    const p2 = this.playerTwo;
-    if (!p1) {
-      this.players[1] = newPlayer;
-      return this.currentPlayers;
-    }
-    if (!p2) {
-      this.players[2] = newPlayer;
-      return this.currentPlayers;
-    }
-    this.enQ(newPlayer);
-    return 'player spots full, new player added to the queue';
+  set setP1(player) {
+    this.players[1] = player;
+  }
+
+  set setP2(player) {
+    this.players[2] = player;
   }
 
   set removePlayer(player) {
     const { playerNumber } = player;
-    this.players[playerNumber] = null;
-  }
-
-  set recyclePlayer(player) {
-    this.removePlayer = player;
-    this.cyclePQ();
-    this.addPlayer = player;
-    return this.currentPlayers;
-  }
-
-  cyclePQ() {
-    if (!this.qEmpty()) {
-      const p1 = this.playerOne;
-      const p2 = this.playerTwo;
-      if (!p1 || !p2) {
-        this.addPlayer = this.deQ();
-      }
+    if (playerNumber === 1) {
+      this.setP1 = null;
+    }
+    if (playerNumber === 2) {
+      this.setP2 = null;
     }
   }
 
-  removeDisconnector(disconnectorSocketId) {
+  addPlayersFromQ() {
+    const p1 = this.getP1;
+    const p2 = this.getP2;
+    if (!p1 && !this.qEmpty()) {
+      this.setP1 = this.deQ();
+    }
+    if (!p2 && !this.qEmpty()) {
+      this.setP2 = this.deQ();
+    }
+  }
+
+  cycle(loser) {
+    if (!loser.playerNumber) {
+      return 'loser object must have property playerNumber';
+    }
+    if (loser.playerNumber > 2 || loser.playerNumber < 1) {
+      return 'playerNumber MUST be 1 or 2';
+    }
+    const { playerNumber } = loser;
+    let player;
+    if (playerNumber === 1) {
+      player = this.getP1;
+    }
+    if (playerNumber === 2) {
+      player = this.getP2;
+    }
+    this.removePlayer = loser;
+    this.enQ(player);
+    this.addPlayersFromQ();
+  }
+
+  removeDisconnector(disconnector) {
+    const { socketId } = disconnector;
     // get the current players
-    const p1 = this.playerOne;
-    const p2 = this.playerTwo;
+    const p1 = this.getP1;
+    const p2 = this.getP2;
 
     // remove the disconnector if she was a player
-    if (p1.socketId === disconnectorSocketId) {
-      this.removePlayer = 1;
+    if (p1.socketId === socketId) {
+      this.removePlayer = p1;
     }
-    if (p2.socketId === disconnectorSocketId) {
-      this.removePlayer = 2;
+    if (p2.socketId === socketId) {
+      this.removePlayer = p2;
     }
-
-    // remove the disconnector from the queue
-    this.kick(disconnectorSocketId);
+    this.kick(socketId);
   }
 
   bothPlayersReady() {
-    return this.playerOne && this.playerTwo;
+    const p1 = this.getP1;
+    const p2 = this.getP2;
+    if (p1 && p2) {
+      return true;
+    }
+    return false;
   }
 }
 
