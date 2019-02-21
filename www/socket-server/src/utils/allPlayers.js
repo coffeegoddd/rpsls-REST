@@ -15,7 +15,8 @@ function Queue() {
   this.count = () => storage.length;
 
   // replica queue with only players usernames
-  this.players = () => storage.map(player => player.username);
+  // this.players = () => storage.map(player => player.username);
+  this.players = () => storage.map(player => player.socketId);
 
   // remove player from queue wherever he is
   this.kick = (socketId) => {
@@ -171,10 +172,10 @@ class AllPlayers {
     const p2 = this.getP2;
 
     // remove the disconnector if she was a player
-    if (p1.socketId === socketId) {
+    if (p1 && p1.socketId === socketId) {
       this.removePlayer = p1;
     }
-    if (p2.socketId === socketId) {
+    if (p2 && p2.socketId === socketId) {
       this.removePlayer = p2;
     }
     this.kick(socketId);
@@ -187,6 +188,19 @@ class AllPlayers {
       return true;
     }
     return false;
+  }
+
+  amIPlaying(socketId) {
+    const p1 = this.getP1;
+    const p2 = this.getP2;
+
+    if (p1 && p1.socketId === socketId) {
+      return 1;
+    }
+    if (p2 && p2.socketId === socketId) {
+      return 2;
+    }
+    return null;
   }
 }
 
