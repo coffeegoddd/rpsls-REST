@@ -8,7 +8,7 @@
     "collectCoverage": true
   },
   "scripts": {
-    "test": "jest --detectOpenHandles --runInBand",
+    "test": "jest --detectOpenHandles --runInBand --forceExit",
     "react-dev": "webpack --watch",
     "install:db": "cd db/ && npm install",
     "seed:db": "cd db/ && npm run seed",
@@ -35,11 +35,14 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "express": "^4.16.4",
     "jest": "^24.1.0",
     "mongodb": "^3.1.13",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
     "supertest": "^3.4.2"
   },
