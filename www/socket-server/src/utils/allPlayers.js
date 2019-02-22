@@ -53,6 +53,11 @@ class AllPlayers {
       2: null,
     };
 
+    this.readyState = {
+      1: null,
+      2: null,
+    };
+
     // track players waiting
     this.queue = new Queue();
   }
@@ -120,6 +125,22 @@ class AllPlayers {
     this.players[2] = player;
   }
 
+  get getR1() {
+    return this.readyState[1];
+  }
+
+  get getR2() {
+    return this.readyState[2];
+  }
+
+  set setR1(bool) {
+    this.readyState[1] = bool;
+  }
+
+  set setR2(bool) {
+    this.readyState[2] = bool;
+  }
+
   set removePlayer(player) {
     const { playerNumber } = player;
     if (playerNumber === 1) {
@@ -182,12 +203,17 @@ class AllPlayers {
   }
 
   bothPlayersReady() {
-    const p1 = this.getP1;
-    const p2 = this.getP2;
+    const p1 = this.getR1;
+    const p2 = this.getR2;
     if (p1 && p2) {
       return true;
     }
     return false;
+  }
+
+  clearReadyState() {
+    this.setR1 = null;
+    this.setR2 = null;
   }
 
   amIPlaying(socketId) {
