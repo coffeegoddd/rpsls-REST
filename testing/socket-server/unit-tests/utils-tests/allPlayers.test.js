@@ -282,13 +282,24 @@ describe('Test AllPlayers class for application', () => {
     players.addPlayersFromQ();
 
     expect(players.qCount()).toBe(0);
+
+    // simulate the ready button
+    players.setR1 = true;
+
     expect(players.bothPlayersReady()).toBe(false);
 
     players.enQ(second);
     players.addPlayersFromQ();
 
+    // simulate the ready button
+    players.setR2 = true;
+
     expect(players.qCount()).toBe(0);
     expect(players.bothPlayersReady()).toBe(true);
+
+    // clear the readyState
+    players.clearReadyState();
+    expect(players.bothPlayersReady()).toBe(false);
   });
 
   it('should remove disconnected players', () => {
