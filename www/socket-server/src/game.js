@@ -64,6 +64,8 @@ io.sockets.on('connection', (socket) => {
       io.emit('competitorDisconnected', {
         message: 'Oops! a competitor disconnected. A new game will start in 20 secs.',
       });
+      // clear the current readyState
+      lobby.clearReadyState();
 
       // update the players
       lobby.addPlayersFromQ();
@@ -143,7 +145,7 @@ io.sockets.on('connection', (socket) => {
 
   socket.on('startGame', ({ message }) => {
     // variable representing server-side timer for single source of truth
-    let count = 34;
+    let count = 40;
 
     // send everyone the initial game timer
     setTimeout((IO) => {

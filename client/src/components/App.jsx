@@ -17,9 +17,11 @@ class App extends Component {
       queue: '',
       startGame: false,
       gameTimer: '',
-      selection: null,
+      selection: '',
       disconnected: false,
+      renderSelectionInfo: false,
     };
+
     // bind emit handlers
     this.socket = socketIOClient('http://localhost:5500', {transports: ['websocket'], upgrade: false});
     this.handleEmitNewPlayer = this.handleEmitNewPlayer.bind(this);
@@ -34,22 +36,56 @@ class App extends Component {
 
     // bind click handlers
     this.handleReadyButtonOnClick = this.handleReadyButtonOnClick.bind(this);
+    this.handleClickUpdateSelection = this.handleClickUpdateSelection.bind(this);
 
     //bind other methods
     this.intiatilizeGame = this.intiatilizeGame.bind(this);
 
+    this.selectionOptions = [
+      // these are the options to choose from
+      // will be passed to the GameController as props
+      {
+        id: 1000,
+        choice: 'rock',
+        winsAgainst: ['scissors', 'lizard'],
+        losesTo: ['paper', 'spock'],
+      },
+      {
+        id: 1001,
+        choice: 'paper',
+        winsAgainst: ['rock', 'spock'],
+        losesTo: ['scissors', 'lizard'],
+      },
+      {
+        id: 1002,
+        choice: 'scissors',
+        winsAgainst: ['paper', 'lizard'],
+        losesTo: ['rock', 'spock'],
+      },
+      {
+        id: 1003,
+        choice: 'lizard',
+        winsAgainst: ['paper', 'spock'],
+        losesTo: ['rock', 'scissors'],
+      },
+      {
+        id: 1004,
+        choice: 'spock',
+        winsAgainst: ['rock', 'scissors'],
+        losesTo: ['paper', 'lizard'],
+      },
+    ];
+
     // map for rendering conditionally
     this._map = {
       getNewPlayerInfo: 'signup component',
-      playerIsReady: <ReadyButton handleClick={this.handleReadyButtonOnClick}/>,
-      startGame: <GameController />,
       waitingPlayerMessage: 'Theres a game in progress. Please wait, you are in the queue!',
       disconnected: 'Oops! a player disconnected ending the game. A new game will start in 20secs',
     };
   }
 
   componentDidMount() {
-    // emit handlers
+    // emission handlers
     this.handleEmitNewPlayer();
     this.handleEmitEnableReadyButton();
     this.handleEmitCurrentQueue();
@@ -205,6 +241,12 @@ class App extends Component {
     });
   }
 
+  handleClickUpdateSelection(choice) {
+    this.setState({
+      selection: choice,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -214,7 +256,9 @@ class App extends Component {
         <div>{this.state.playerNumber ? `You are player ${this.state.playerNumber}` : null}</div>
 
         {/* render the ready button for the players */}
-        <div>{this.state.playerNumber && this.state.renderReady ? this._map['playerIsReady'] : null}</div>
+        <div>{this.state.playerNumber && this.state.renderReady ?
+          <ReadyButton handleClick={this.handleReadyButtonOnClick}/> : null}
+        </div>
 
         {/* after shes ready, wait for opponent */}
         <div>{this.state.ready ? `Great! waiting for player ${this.state.playerNumber === 1 ? 2 : 1} to be ready` : null}</div>
@@ -226,7 +270,12 @@ class App extends Component {
         <div>{!this.state.playerNumber && this.state.disconnected ? this._map.disconnected : null}</div>
 
         {/* render the game controller if the client is playing */}
-        <div>{this.state.startGame && this.state.playerNumber ? this._map.startGame : null}</div>
+        <div>{this.state.startGame && this.state.playerNumber ?
+          <GameController
+            options={this.selectionOptions}
+            handleClickUpdateSelection={this.handleClickUpdateSelection}
+          /> : null}
+        </div>
 
         {/* show the game timer */}
         <div>{this.state.startGame && this.state.gameTimer && this.state.playerNumber ? this.state.gameTimer : null}</div>

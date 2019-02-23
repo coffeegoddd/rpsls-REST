@@ -1,9 +1,18 @@
 import React from 'react';
 import SelectionItem from './SelectionItem';
 
-const SelectionMenu = (props) => (
+const SelectionMenu = ({ options, handleClickUpdateSelection }) => (
   <ul>
-    <SelectionItem />
+    {options.map((option) => {
+      const { id, choice, winsAgainst, losesTo } = option;
+      return <SelectionItem
+        key={id}  
+        choice={choice}
+        win={winsAgainst}
+        lose={losesTo}
+        handleClickUpdateSelection={handleClickUpdateSelection}
+      />;
+    })}
   </ul>
 );
 

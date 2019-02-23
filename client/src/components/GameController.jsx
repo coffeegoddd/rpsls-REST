@@ -1,11 +1,11 @@
 import React from 'react';
 import SelectionMenu from './SelectionMenu';
 
-const GameController = (props) => {
+const GameController = ({ options, handleClickUpdateSelection }) => {
   return (
     <div>
-      <button>Throw</button>
-      <SelectionMenu />
+      <div>Make Selection</div>
+      <SelectionMenu options={options} handleClickUpdateSelection={handleClickUpdateSelection}/>
     </div>
   );
 };
