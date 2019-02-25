@@ -20,8 +20,7 @@ class SelectionItem extends Component {
     const { choice, win, lose, handleClickUpdateSelection } = this.props;
     return (
       <li>
-        <button onClick={() => handleClickUpdateSelection(choice) }>Throw</button>
-        {choice}
+        <button onClick={() => handleClickUpdateSelection(choice) }>{choice}</button>
         <button onClick={this.handleClick}>?</button>
         {this.state.renderInfo ? <SelectionItemInfo choice={choice} win={win} lose={lose}/> : null}
       </li>

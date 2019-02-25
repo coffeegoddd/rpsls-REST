@@ -3,6 +3,7 @@ import socketIOClient from 'socket.io-client';
 
 import ReadyButton from './ReadyButton';
 import GameController from './GameController';
+import Results from './Results';
 
 class App extends Component {
   constructor() {
@@ -20,6 +21,9 @@ class App extends Component {
       selection: '',
       disconnected: false,
       renderSelectionInfo: false,
+      selectionMade: false,
+      receivedResults: false,
+      results: '',
     };
 
     // bind emit handlers
@@ -33,6 +37,7 @@ class App extends Component {
     this.handleEmitStartGame = this.handleEmitStartGame.bind(this);
     this.handleEmitBegin = this.handleEmitBegin.bind(this);
     this.handleEmitDecrementGameTimer = this.handleEmitDecrementGameTimer.bind(this);
+    this.handleEmitResults = this.handleEmitResults.bind(this);
 
     // bind click handlers
     this.handleReadyButtonOnClick = this.handleReadyButtonOnClick.bind(this);
@@ -81,6 +86,7 @@ class App extends Component {
       getNewPlayerInfo: 'signup component',
       waitingPlayerMessage: 'Theres a game in progress. Please wait, you are in the queue!',
       disconnected: 'Oops! a player disconnected ending the game. A new game will start in 20secs',
+      selectionMade: 'Great choice! waiting on opponent...',
     };
   }
 
@@ -94,6 +100,7 @@ class App extends Component {
     this.handleEmitStartGame();
     this.handleEmitBegin();
     this.handleEmitDecrementGameTimer();
+    this.handleEmitResults();
 
     // click handlers
     this.handleEmitNewGameSoonCome();
@@ -139,13 +146,19 @@ class App extends Component {
             playerNumber,
             ready,
             renderReady: true,
-            disconnected: false
+            disconnected: false,
+            selection: '',
+            selectionMade: false,
+            receivedResults: false,
           };
         } else {
           return {
             playerNumber,
             ready,
-            disconnected: false
+            disconnected: false,
+            selection: '',
+            selectionMade: false,
+            receivedResults: false,
           };
         }
       });
@@ -171,6 +184,9 @@ class App extends Component {
         startGame: false,
         gameTimer: '',
         disconnected: true,
+        selection: '',
+        selectionMade: false,
+        receivedResults: false,
       });
     });
   }
@@ -241,9 +257,30 @@ class App extends Component {
     });
   }
 
-  handleClickUpdateSelection(choice) {
+  handleClickUpdateSelection(selection) {
     this.setState({
-      selection: choice,
+      ready: false,
+      selection,
+      selectionMade: true,
+    });
+    this.socket.emit('selection', {
+      playerNumber: this.state.playerNumber,
+      username: this.state.username,
+      socketId: this.state.socketId,
+      sessionId: this.state.socketId,
+      selection,
+    });
+  }
+
+  handleEmitResults() {
+    this.socket.on('results', (results) => {
+      console.log('results -->', results);
+      this.setState({
+        startGame: false,
+        gameTimer: '',
+        receivedResults: true,
+        results,
+      });
     });
   }
 
@@ -253,32 +290,40 @@ class App extends Component {
         <div>Welcome to RPSLS</div>
 
         {/* display the clients playerNumber if she has one */}
-        <div>{this.state.playerNumber ? `You are player ${this.state.playerNumber}` : null}</div>
+        <div>{this.state.playerNumber ? `You are player ${this.state.playerNumber}` : null }</div>
 
         {/* render the ready button for the players */}
         <div>{this.state.playerNumber && this.state.renderReady ?
-          <ReadyButton handleClick={this.handleReadyButtonOnClick}/> : null}
+          <ReadyButton handleClick={this.handleReadyButtonOnClick}/> : null }
         </div>
 
         {/* after shes ready, wait for opponent */}
-        <div>{this.state.ready ? `Great! waiting for player ${this.state.playerNumber === 1 ? 2 : 1} to be ready` : null}</div>
+        <div>{this.state.ready ? `Great! waiting for player ${this.state.playerNumber === 1 ? 2 : 1} to be ready` : null }</div>
 
         {/* if the client is waiting and not playing, let him know */}
-        <div>{!this.state.playerNumber && !this.state.disconnected ? this._map.waitingPlayerMessage : null}</div>
+        <div>{!this.state.playerNumber && !this.state.disconnected ? this._map.waitingPlayerMessage : null }</div>
 
         {/* if a player has disconnected, let everyone know that and how long til the next game */}
-        <div>{!this.state.playerNumber && this.state.disconnected ? this._map.disconnected : null}</div>
+        <div>{!this.state.playerNumber && this.state.disconnected ? this._map.disconnected : null }</div>
+
+        {/* show the game timer */}
+        <div>{this.state.startGame && this.state.gameTimer && this.state.playerNumber ? this.state.gameTimer : null }</div>
 
         {/* render the game controller if the client is playing */}
-        <div>{this.state.startGame && this.state.playerNumber ?
+        <div>{this.state.startGame && this.state.playerNumber && !this.state.selectionMade ?
           <GameController
             options={this.selectionOptions}
             handleClickUpdateSelection={this.handleClickUpdateSelection}
-          /> : null}
+          /> : null }
         </div>
 
-        {/* show the game timer */}
-        <div>{this.state.startGame && this.state.gameTimer && this.state.playerNumber ? this.state.gameTimer : null}</div>
+        {/* player made a selection, waiting for results */}
+        <div>{ this.state.selectionMade && !this.state.receivedResults ? this._map.selectionMade : null }</div>
+
+        {/* display the results once they arrive */}
+        <div>{ this.state.receivedResults ? <Results me={this.state.playerNumber} outcome={this.state.results}/> : null }</div>
+
+        {/* display the queue */}
       </div>
     );
   }
