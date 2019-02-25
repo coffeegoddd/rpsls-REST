@@ -1,6 +1,7 @@
 const http = require('http');
 const socketIO = require('socket.io');
 const AllPlayers = require('./utils/allPlayers');
+const findWinner = require('./utils/findWinner');
 
 const server = http.createServer();
 
@@ -66,6 +67,9 @@ io.sockets.on('connection', (socket) => {
       });
       // clear the current readyState
       lobby.clearReadyState();
+
+      // clear the current selectionState
+      lobby.clearSelectionState();
 
       // update the players
       lobby.addPlayersFromQ();
@@ -164,6 +168,59 @@ io.sockets.on('connection', (socket) => {
   });
 
   // clear the setInterval after the results are sent to the client
+  socket.on('selection', (playerSelection) => {
+    const { playerNumber } = playerSelection;
+    console.log('selection -->', playerSelection);
+    // assign player selection to correct selection spot
+    lobby[`setS${playerNumber}`] = playerSelection;
+
+    // check to see if both selections are made
+    const readyForResults = lobby.bothSelectionsMade();
+    console.log('ready for results? -->', readyForResults);
+    if (readyForResults) {
+      // get each selection
+      const p1 = lobby.getS1;
+      const p2 = lobby.getS2;
+
+      // get the results
+      const results = findWinner(p1, p2);
+
+      // send everyone the results
+      io.emit('results', {
+        1: p1,
+        2: p2,
+        results,
+      });
+
+      // clear the selectionState
+      lobby.clearSelectionState();
+
+      // clear the readyState
+      lobby.clearReadyState();
+
+      // clear the setInterval
+      clearInterval(timer);
+
+      // wait 15 secs, then recycle the loser
+      const { loser, isTie } = results;
+      console.log('a tie? -->', isTie);
+      // if there was no tie, cycle
+      if (isTie) {
+        setTimeout((IO) => {
+          IO.emit('sendPlayerInfo', { message: 'A tie! nows your chance to win it all!' });
+        }, 5000, io);
+      } else {
+        setTimeout((IO) => {
+          if (loser === 1) {
+            lobby.cycle(p1);
+          } else {
+            lobby.cycle(p2);
+          }
+          IO.emit('sendPlayerInfo', { message: 'Great game! new game starting soon' });
+        }, 15000, io);
+      }
+    }
+  });
 });
 
 module.exports = io;

@@ -58,6 +58,11 @@ class AllPlayers {
       2: null,
     };
 
+    this.selectionState = {
+      1: null,
+      2: null,
+    };
+
     // track players waiting
     this.queue = new Queue();
   }
@@ -139,6 +144,22 @@ class AllPlayers {
 
   set setR2(bool) {
     this.readyState[2] = bool;
+  }
+
+  get getS1() {
+    return this.selectionState[1];
+  }
+
+  get getS2() {
+    return this.selectionState[2];
+  }
+
+  set setS1(playerSelection) {
+    this.selectionState[1] = playerSelection;
+  }
+
+  set setS2(playerSelection) {
+    this.selectionState[2] = playerSelection;
   }
 
   set removePlayer(player) {
@@ -227,6 +248,20 @@ class AllPlayers {
       return 2;
     }
     return null;
+  }
+
+  clearSelectionState() {
+    this.setS1 = null;
+    this.setS2 = null;
+  }
+
+  bothSelectionsMade() {
+    const p1 = this.getS1;
+    const p2 = this.getS2;
+    if (p1 && p2) {
+      return true;
+    }
+    return false;
   }
 }
 
