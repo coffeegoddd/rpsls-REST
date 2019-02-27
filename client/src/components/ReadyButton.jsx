@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from '../styles/ReadyButton.css';
 
 const ReadyButton = ({ handleClick }) => (
-  <button onClick={() => handleClick() }>
+  <button className={styles.ready} onClick={() => handleClick() }>
     Ready
   </button>
 );

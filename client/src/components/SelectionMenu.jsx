@@ -1,8 +1,10 @@
 import React from 'react';
 import SelectionItem from './SelectionItem';
 
+import styles from '../styles/SelectionMenu.css';
+
 const SelectionMenu = ({ options, handleClickUpdateSelection }) => (
-  <ul>
+  <ul className={styles.list}>
     {options.map((option) => {
       const { id, choice, winsAgainst, losesTo } = option;
       return <SelectionItem

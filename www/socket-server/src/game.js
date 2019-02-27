@@ -135,7 +135,6 @@ io.sockets.on('connection', (socket) => {
 
     // find out if both are ready
     const start = lobby.bothPlayersReady();
-    console.log('ready to start ? -->', start);
     // if they are, start the game!
     if (start) {
       io.emit('startIn5secs', {
@@ -156,6 +155,11 @@ io.sockets.on('connection', (socket) => {
       IO.emit('begin');
     }, 5000, io);
 
+    // clear old timer if it exists
+    if (timer) {
+      clearInterval(timer);
+    }
+
     // send everyone the new time every second
     timer = setInterval((IO) => {
       if (count >= 0) {
@@ -170,13 +174,11 @@ io.sockets.on('connection', (socket) => {
   // clear the setInterval after the results are sent to the client
   socket.on('selection', (playerSelection) => {
     const { playerNumber } = playerSelection;
-    console.log('selection -->', playerSelection);
     // assign player selection to correct selection spot
     lobby[`setS${playerNumber}`] = playerSelection;
 
     // check to see if both selections are made
     const readyForResults = lobby.bothSelectionsMade();
-    console.log('ready for results? -->', readyForResults);
     if (readyForResults) {
       // get each selection
       const p1 = lobby.getS1;
@@ -203,7 +205,6 @@ io.sockets.on('connection', (socket) => {
 
       // wait 15 secs, then recycle the loser
       const { loser, isTie } = results;
-      console.log('a tie? -->', isTie);
       // if there was no tie, cycle
       if (isTie) {
         setTimeout((IO) => {
@@ -217,7 +218,7 @@ io.sockets.on('connection', (socket) => {
             lobby.cycle(p2);
           }
           IO.emit('sendPlayerInfo', { message: 'Great game! new game starting soon' });
-        }, 15000, io);
+        }, 5000, io);
       }
     }
   });

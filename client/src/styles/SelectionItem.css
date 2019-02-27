@@ -1,0 +1,147 @@
+.rock {
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  color: white;
+  height: 75px;
+  width: 175px;
+  border-radius: 70px;
+  -moz-border-radius: 70px;
+  -webkit-border-radius: 70px;
+  -khtml-border-radius: 70px;
+  background-color: darkslategray;
+  margin: 3px;
+  outline: none;
+  cursor: pointer;
+  background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/rock.jpg');
+  background-size: cover;    
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.paper {
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  color: black;
+  height: 75px;
+  width: 175px;
+  border-radius: 70px;
+  -moz-border-radius: 70px;
+  -webkit-border-radius: 70px;
+  -khtml-border-radius: 70px;
+  background-color: white;
+  margin: 3px;
+  outline: none;
+  cursor: pointer;
+  background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/paper.jpg');
+  background-size: cover;    
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.scissors {
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  color: black;
+  height: 75px;
+  width: 175px;
+  border-radius: 70px;
+  -moz-border-radius: 70px;
+  -webkit-border-radius: 70px;
+  -khtml-border-radius: 70px;
+  background-color: silver;
+  margin: 3px;
+  outline: none;
+  cursor: pointer;
+  background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/scissors.jpg');
+  background-size: cover;    
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.lizard {
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  color: white;
+  height: 75px;
+  width: 175px;
+  border-radius: 70px;
+  -moz-border-radius: 70px;
+  -webkit-border-radius: 70px;
+  -khtml-border-radius: 70px;
+  background-color: green;
+  margin: 3px;
+  outline: none;
+  cursor: pointer;
+  background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/lizard.jpg');
+  background-size: cover;    
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.spock {
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  color: white;
+  height: 75px;
+  width: 175px;
+  border-radius: 70px;
+  -moz-border-radius: 70px;
+  -webkit-border-radius: 70px;
+  -khtml-border-radius: 70px;
+  background-color: blue;
+  margin: 3px;
+  outline: none;
+  cursor: pointer;
+  background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/spock.jpg');
+  background-size: cover;    
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.info {
+  text-align: center;
+  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  background-color: #032254;
+  color: #9bcfff;
+  border: 1px #9bcfff solid;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -khtml-border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .rock {
+    height: 55px;
+    width: 115px;
+    font-size: 20px;
+  }
+
+  .paper {
+    height: 55px;
+    width: 115px;
+    font-size: 20px;
+  }
+
+  .scissors {
+    height: 55px;
+    width: 115px;
+    font-size: 20px;
+  }
+
+  .lizard {
+    height: 55px;
+    width: 115px;
+    font-size: 20px;
+  }
+
+  .spock {
+    height: 55px;
+    width: 115px;
+    font-size: 20px;
+  }
+}
