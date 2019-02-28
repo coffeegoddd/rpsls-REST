@@ -11,7 +11,7 @@ Current Version
 Hey! This is the MVP version of this concept, so it works in the basic sense, but still has some kinks and bugs to workout.
 
 Play the game with a friend or two here:
-http://http://18.144.37.251:3000
+http://18.144.37.251:3000
 
 You can also pull the docker image from my dockerhub @coffeegoddd,
 or clone this repo to run the app locally.
