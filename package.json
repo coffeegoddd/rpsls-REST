@@ -8,7 +8,7 @@
     "collectCoverage": true
   },
   "scripts": {
-    "test": "jest --detectOpenHandles --runInBand",
+    "test": "jest --detectOpenHandles --runInBand --forceExit",
     "react-dev": "webpack --watch",
     "install:db": "cd db/ && npm install",
     "seed:db": "cd db/ && npm run seed",
@@ -16,7 +16,10 @@
     "start:static": "cd www/static-server && npm run server-dev",
     "install:api": "cd www/api && npm install",
     "start:api": "cd www/api && npm run server-dev",
-    "install:all": "npm install && npm run install:db && npm run install:static && npm run install:api"
+    "install:socket": "cd www/socket-server npm install",
+    "start:socket": "cd www/socket-server && npm run socket-dev",
+    "install:all": "npm install && npm run install:db && npm run install:static && npm run install:api && npm run install:socket",
+    "start:all": "npm run start:static | npm run start:socket"
   },
   "repository": {
     "type": "git",
@@ -32,11 +35,15 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "express": "^4.16.4",
     "jest": "^24.1.0",
     "mongodb": "^3.1.13",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "supertest": "^3.4.2"
   },
   "devDependencies": {

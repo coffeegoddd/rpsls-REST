@@ -1,11 +1,11 @@
-const mongoUtil = require('../../db/index');
+const mongoUtil = require('../../../db/index');
 const {
   getPlayerInfo,
   getAllPlayers,
   createPlayer,
   updatePlayerInfo,
   deletePlayer,
-} = require('../../db/dbHelpers');
+} = require('../../../db/dbHelpers');
 
 module.exports = {
   // req.DB will exist during testing

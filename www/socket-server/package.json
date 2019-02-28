@@ -1,19 +1,18 @@
 {
-  "name": "api",
+  "name": "socket-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server-dev": "nodemon src/index.js"
+    "socket-dev": "node src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "socket.io": "^2.2.0"
   }
 }

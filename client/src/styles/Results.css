@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
+.win {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: 'Anton', sans-serif;
+  color: #89ffa8;
+  font-size: 85px;
+}
+
+.lose {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: 'Anton', sans-serif;
+  color: #ff6060;
+  font-size: 85px;
+}
+
+.tie {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: 'Anton', sans-serif;
+  color: #9bcfff;
+  font-size: 85px;
+}
+
+.wait {
+  color: #9bcfff;
+}
+
+@media only screen and (max-width: 768px) {
+  .win {
+    font-size: 55px;
+  }
+
+  .lose {
+    font-size: 55px;
+  }
+
+  .tie {
+    font-size: 55px;
+  }
+}

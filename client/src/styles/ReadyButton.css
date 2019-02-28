@@ -1,0 +1,35 @@
+.ready {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  font-size: 35px;
+  background-color: blueviolet;
+  height: 100px;
+  width: 175px;
+  border-radius: 70px;
+  -moz-border-radius: 70px;
+  -webkit-border-radius: 70px;
+  -khtml-border-radius: 70px;
+  border: solid  #9bcfff 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ready:hover {
+  background-color:#52eab7;
+  color: black;
+  border: none;
+}
+
+.ready:active {
+  -webkit-box-shadow: 0 0 20px #00ff7f;
+  box-shadow: 0 0 20px #00ff7f;
+}
+
+@media only screen and (max-width: 768px) {
+  .ready {
+    font-size: 25px;
+    height: 75px;
+    width: 125px;
+    background-color: blueviolet;
+  }
+}

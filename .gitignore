@@ -65,3 +65,5 @@ typings/
 client/public/dist/bundle.js
 
 db/node_modules
+
+client/public/assets
