@@ -168,6 +168,11 @@ io.sockets.on('connection', (socket) => {
         });
         count -= 1;
       }
+      if (count === -1) {
+        IO.emit('sendSelection', {
+          message: 'Timer at 0, send selection',
+        });
+      }
     }, 1000, io);
   });
 

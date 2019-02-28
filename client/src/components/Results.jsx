@@ -11,10 +11,15 @@ const Results = ({ me, outcome }) => {
     scissors: 'Scissors',
     lizard: 'Lizard',
     spock: 'Spock',
+    timeout: 'Timeout',
   };
   
   let playerWin, playerLose, winLine, recap, result;
-  let infoLine = `${capitalizeChoice[winnerChoice]} beats ${capitalizeChoice[loserChoice]}.`;
+
+  let winSelection = winnerChoice || 'timeout';
+  let loseSelection = loserChoice || 'timeout';
+
+  let infoLine = `${capitalizeChoice[winSelection]} beats ${capitalizeChoice[loseSelection]}.`;
 
   if (outcome[winner]) {
     playerWin = outcome[winner].username;
@@ -24,7 +29,7 @@ const Results = ({ me, outcome }) => {
   }
 
   if (isTie) {
-    infoLine = `Both players threw ${capitalizeChoice[winnerChoice]}!`;
+    infoLine = `Both players threw ${capitalizeChoice[winSelection]}!`;
     result = 'tie';
     if (me) {
       winLine = 'YOU TIED';
@@ -32,18 +37,19 @@ const Results = ({ me, outcome }) => {
       winLine = 'THEY TIED';
     }
   } else if (me === winner) {
-    recap = `You threw ${capitalizeChoice[winnerChoice]} and ${playerLose} threw ${capitalizeChoice[loserChoice]}.`;
+    recap = `You threw ${capitalizeChoice[winSelection]} and ${playerLose} threw ${capitalizeChoice[loseSelection]}.`;
     result = 'win';
-    winLine = 'YOU WIN';
+    winLine = 'YOU WON';
   } else if (me === loser) {
-    recap = `${playerWin} threw ${capitalizeChoice[winnerChoice]} and you threw ${capitalizeChoice[loserChoice]}.`;
+    recap = `${playerWin} threw ${capitalizeChoice[winSelection]} and you threw ${capitalizeChoice[loseSelection]}.`;
     result = 'lose';
     winLine = 'YOU LOST'; 
   } else if (!results.winner && !results.loser && !results.isTie) {
     result = 'doubleTimeOut';
-    winLine = 'Both players kicked to queue for timing out';
+    infoLine = 'Both players kicked to queue for timing out';
+    winLine = null;
   } else {
-    recap = `${playerWin} threw ${capitalizeChoice[winnerChoice]} and ${playerLose} threw ${capitalizeChoice[loserChoice]}.`;
+    recap = `${playerWin} threw ${capitalizeChoice[winSelection]} and ${playerLose} threw ${capitalizeChoice[loseSelection]}.`;
     result = 'wait';
     winLine = `${playerWin} WINS`
   }

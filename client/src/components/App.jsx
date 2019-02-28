@@ -46,6 +46,7 @@ class App extends Component {
     this.handleEmitBegin = this.handleEmitBegin.bind(this);
     this.handleEmitDecrementGameTimer = this.handleEmitDecrementGameTimer.bind(this);
     this.handleEmitResults = this.handleEmitResults.bind(this);
+    this.handleEmitSendSelection = this.handleEmitSendSelection.bind(this);
 
     // bind click handlers
     this.handleReadyButtonOnClick = this.handleReadyButtonOnClick.bind(this);
@@ -101,6 +102,7 @@ class App extends Component {
     this.handleEmitBegin();
     this.handleEmitDecrementGameTimer();
     this.handleEmitResults();
+    this.handleEmitSendSelection();
 
     // click handlers
     this.handleEmitNewGameSoonCome();
@@ -284,6 +286,28 @@ class App extends Component {
         gameTimer: '',
         receivedResults: true,
         results,
+      });
+    });
+  }
+
+  handleEmitSendSelection() {
+    this.socket.on('sendSelection', ({ message }) => {
+      console.log(message);
+      this.setState((state) => {
+        if (!state.playerNumber) {
+          return;
+        }
+        if (state.selectionMade) {
+          return;
+        }
+        this.socket.emit('selection', {
+          playerNumber: this.state.playerNumber,
+          username: this.state.username,
+          socketId: this.state.socketId,
+          sessionId: this.state.socketId,
+          selection: null,
+        });
+        return { selectionMade: true };
       });
     });
   }

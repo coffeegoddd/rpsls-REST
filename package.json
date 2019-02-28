@@ -19,7 +19,7 @@
     "install:socket": "cd www/socket-server npm install",
     "start:socket": "cd www/socket-server && npm run socket-dev",
     "install:all": "npm install && npm run install:db && npm run install:static && npm run install:api && npm run install:socket",
-    "start:all": "npm run start:static | npm run start:api | npm run start:socket"
+    "start:all": "npm run start:static | npm run start:socket"
   },
   "repository": {
     "type": "git",
