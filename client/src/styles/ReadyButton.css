@@ -17,7 +17,7 @@
 .ready:hover {
   background-color:#52eab7;
   color: black;
-  border: solid black 2px;
+  border: none;
 }
 
 .ready:active {

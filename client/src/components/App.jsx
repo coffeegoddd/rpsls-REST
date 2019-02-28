@@ -5,7 +5,6 @@ import socketIOClient from 'socket.io-client';
 import ClientMesage from './ClientMessage';
 import ReadyButton from './ReadyButton';
 import GameController from './GameController';
-import Results from './Results';
 import Queue from './Queue';
 
 
@@ -293,7 +292,7 @@ class App extends Component {
     return (
       <div className={stylesApp.mainContainer}>
         <div className={stylesApp.gameViewContainer}>
-          <div className={stylesApp.title}>Welcome to <span>RPSLS</span></div>
+          <div className={stylesApp.title}>Welcome to RPSLS</div>
           { this.state.startGame && this.state.playerNumber && this.state.gameTimer ? <div className={[stylesApp.text, stylesApp.timer].join(' ')}>{this.state.startGame && this.state.gameTimer && this.state.playerNumber ? this.state.gameTimer : null }</div> : null }
           <ClientMesage
             playerNumber={this.state.playerNumber}
@@ -312,14 +311,14 @@ class App extends Component {
             /> : null }
           </div>
           <div>
-            <div className={stylesApp.ready}>{this.state.playerNumber && this.state.renderReady ?
+            <div className={stylesApp.ready}>{this.state.playerNumber && this.state.renderReady && !this.state.startGame ?
               <ReadyButton handleClick={this.handleReadyButtonOnClick}/> : null }
             </div>
           </div>
         </div>
-        <div className={stylesApp.queue}>
+        {/* <div className={stylesApp.queue}>
             { this.state.qCount ? <Queue queue={this.state.queue}/> : null }
-        </div>
+        </div> */}
       </div>
     );
   }

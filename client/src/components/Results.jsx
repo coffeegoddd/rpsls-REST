@@ -1,11 +1,20 @@
 import React from 'react';
 
+import styles from '../styles/Results.css';
+
 const Results = ({ me, outcome }) => {
   const { results }  = outcome;
   const { winner, loser, isTie, winnerChoice, loserChoice } = results;
+  const capitalizeChoice = {
+    rock: 'Rock',
+    paper: 'Paper',
+    scissors: 'Scissors',
+    lizard: 'Lizard',
+    spock: 'Spock',
+  };
   
-  let playerWin, playerLose, winLine, recap;
-  let infoLine = `${winnerChoice} beats ${loserChoice}.`;
+  let playerWin, playerLose, winLine, recap, result;
+  let infoLine = `${capitalizeChoice[winnerChoice]} beats ${capitalizeChoice[loserChoice]}.`;
 
   if (outcome[winner]) {
     playerWin = outcome[winner].username;
@@ -15,26 +24,35 @@ const Results = ({ me, outcome }) => {
   }
 
   if (isTie) {
-    winLine = `We have a tie! Both players threw ${winnerChoice}!`;
-    infoLine = null;
+    infoLine = `Both players threw ${capitalizeChoice[winnerChoice]}!`;
+    result = 'tie';
+    if (me) {
+      winLine = 'YOU TIED';
+    } else {
+      winLine = 'THEY TIED';
+    }
   } else if (me === winner) {
-    recap = `You threw ${winnerChoice} and ${playerLose} threw ${loserChoice}.`;
-    winLine = 'You won!';
+    recap = `You threw ${capitalizeChoice[winnerChoice]} and ${playerLose} threw ${capitalizeChoice[loserChoice]}.`;
+    result = 'win';
+    winLine = 'YOU WIN';
   } else if (me === loser) {
-    recap = `${playerWin} threw ${winnerChoice} and you threw ${loserChoice}.`;
-    winLine = 'You lost.' 
+    recap = `${playerWin} threw ${capitalizeChoice[winnerChoice]} and you threw ${capitalizeChoice[loserChoice]}.`;
+    result = 'lose';
+    winLine = 'YOU LOST'; 
   } else if (!results.winner && !results.loser && !results.isTie) {
-    winLine = 'Both players kicked to queue for timing out'
+    result = 'doubleTimeOut';
+    winLine = 'Both players kicked to queue for timing out';
   } else {
-    recap = `${playerWin} threw ${winnerChoice} and ${playerLose} threw ${loserChoice}.`;
-    winLine = `${playerWin} wins!`
+    recap = `${playerWin} threw ${capitalizeChoice[winnerChoice]} and ${playerLose} threw ${capitalizeChoice[loserChoice]}.`;
+    result = 'wait';
+    winLine = `${playerWin} WINS`
   }
 
   return (
     <div>
       <div>{recap}</div>
       <div>{infoLine}</div>
-      <div>{winLine}</div>
+      <div className={styles[result]}>{winLine}</div>
       <div>A new game will begin shortly...</div>
     </div>
   );

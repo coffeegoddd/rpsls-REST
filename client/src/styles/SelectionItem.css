@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
 .rock {
-  font-family: 'Roboto', sans-serif;
-  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 40px;
   color: white;
   height: 75px;
   width: 175px;
@@ -8,8 +14,7 @@
   -moz-border-radius: 70px;
   -webkit-border-radius: 70px;
   -khtml-border-radius: 70px;
-  background-color: darkslategray;
-  margin: 3px;
+  margin: 4px;
   outline: none;
   cursor: pointer;
   background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/rock.jpg');
@@ -19,17 +24,20 @@
 }
 
 .paper {
-  font-family: 'Roboto', sans-serif;
-  font-size: 25px;
-  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 40px;
+  color: white;
   height: 75px;
   width: 175px;
   border-radius: 70px;
   -moz-border-radius: 70px;
   -webkit-border-radius: 70px;
   -khtml-border-radius: 70px;
-  background-color: white;
-  margin: 3px;
+  margin: 4px;
   outline: none;
   cursor: pointer;
   background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/paper.jpg');
@@ -39,17 +47,20 @@
 }
 
 .scissors {
-  font-family: 'Roboto', sans-serif;
-  font-size: 25px;
-  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 40px;
+  color: white;
   height: 75px;
   width: 175px;
   border-radius: 70px;
   -moz-border-radius: 70px;
   -webkit-border-radius: 70px;
   -khtml-border-radius: 70px;
-  background-color: silver;
-  margin: 3px;
+  margin: 4px;
   outline: none;
   cursor: pointer;
   background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/scissors.jpg');
@@ -59,8 +70,12 @@
 }
 
 .lizard {
-  font-family: 'Roboto', sans-serif;
-  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 40px;
   color: white;
   height: 75px;
   width: 175px;
@@ -68,8 +83,7 @@
   -moz-border-radius: 70px;
   -webkit-border-radius: 70px;
   -khtml-border-radius: 70px;
-  background-color: green;
-  margin: 3px;
+  margin: 4px;
   outline: none;
   cursor: pointer;
   background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/lizard.jpg');
@@ -79,8 +93,12 @@
 }
 
 .spock {
-  font-family: 'Roboto', sans-serif;
-  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 40px;
   color: white;
   height: 75px;
   width: 175px;
@@ -88,8 +106,7 @@
   -moz-border-radius: 70px;
   -webkit-border-radius: 70px;
   -khtml-border-radius: 70px;
-  background-color: blue;
-  margin: 3px;
+  margin: 4px;
   outline: none;
   cursor: pointer;
   background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/spock.jpg');
@@ -114,34 +131,101 @@
   cursor: pointer;
 }
 
+.victory {
+  background-image: none;
+  background-color: rgba(110, 195, 85, 0.98);
+  opacity: .5;
+}
+
+.defeat {
+  background-image: none;
+  background-color: rgba(249, 5, 5, 0.8);
+  opacity: .5;
+}
+
+.rock:hover {
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 20px #9bcfff;
+}
+
+.paper:hover {
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 20px #9bcfff;
+}
+
+.scissors:hover {
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 20px #9bcfff;
+}
+
+.lizard:hover {
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 20px #9bcfff;
+}
+
+.spock:hover {
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 20px #9bcfff;
+}
+
+.rock:active {
+  color: #a5dfff;
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 40px #9bcfff;
+}
+
+.paper:active {
+  color: #a5dfff;
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 40px #9bcfff;
+}
+
+.scissors:active {
+  color: #a5dfff;
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 40px #9bcfff;
+}
+
+.lizard:active {
+  color: #a5dfff;
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 40px #9bcfff;
+}
+
+.spock:active {
+  color: #a5dfff;
+  -webkit-box-shadow: 0 0 20px #9bcfff;
+  box-shadow: 0 0 40px #9bcfff;
+}
+
 @media only screen and (max-width: 768px) {
   .rock {
-    height: 55px;
-    width: 115px;
-    font-size: 20px;
+    height: 50px;
+    width: 120px;
+    font-size: 25px;
   }
 
   .paper {
-    height: 55px;
-    width: 115px;
-    font-size: 20px;
+    height: 50px;
+    width: 120px;
+    font-size: 25px;
   }
 
   .scissors {
-    height: 55px;
-    width: 115px;
-    font-size: 20px;
+    height: 50px;
+    width: 120px;
+    font-size: 25px;
   }
 
   .lizard {
-    height: 55px;
-    width: 115px;
-    font-size: 20px;
+    height: 50px;
+    width: 120px;
+    font-size: 25px;
   }
 
   .spock {
-    height: 55px;
-    width: 115px;
-    font-size: 20px;
+    height: 50px;
+    width: 120px;
+    font-size: 25px;
   }
 }
