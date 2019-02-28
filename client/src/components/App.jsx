@@ -35,7 +35,12 @@ class App extends Component {
     };
 
     // bind emit handlers
-    this.socket = socketIOClient('http://localhost:5500', {transports: ['websocket'], upgrade: false});
+
+    // for local work
+    // this.socket = socketIOClient('http://localhost:5500', { transports: ['websocket'], upgrade: false });
+
+    // for ec2
+    this.socket = socketIOClient('http://18.144.37.251:5500', { transports: ['websocket'], upgrade: false });
     this.handleEmitNewPlayer = this.handleEmitNewPlayer.bind(this);
     this.handleEmitEnableReadyButton = this.handleEmitEnableReadyButton.bind(this);
     this.handleEmitCurrentQueue = this.handleEmitCurrentQueue.bind(this);
