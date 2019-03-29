@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000 3001 3111 5500 6000 4000
 
-CMD ["sh", "-c", "npm run install:all && npm run start:all"]
+CMD ["sh", "-c", "npm run install:all && npm run all:pm2"]

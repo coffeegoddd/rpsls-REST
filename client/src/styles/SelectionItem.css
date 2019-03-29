@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Anton');
 
-.rock {
+.rock, .paper, .scissors, .lizard, .spock {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -17,103 +17,31 @@
   margin: 4px;
   outline: none;
   cursor: pointer;
-  background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/rock.jpg');
   background-size: cover;    
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.rock {
+  background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/rock.jpg');
 }
 
 .paper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Anton', sans-serif;
-  font-size: 40px;
-  color: white;
-  height: 75px;
-  width: 175px;
-  border-radius: 70px;
-  -moz-border-radius: 70px;
-  -webkit-border-radius: 70px;
-  -khtml-border-radius: 70px;
-  margin: 4px;
-  outline: none;
-  cursor: pointer;
   background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/paper.jpg');
-  background-size: cover;    
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 
 .scissors {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Anton', sans-serif;
-  font-size: 40px;
-  color: white;
-  height: 75px;
-  width: 175px;
-  border-radius: 70px;
-  -moz-border-radius: 70px;
-  -webkit-border-radius: 70px;
-  -khtml-border-radius: 70px;
-  margin: 4px;
-  outline: none;
-  cursor: pointer;
   background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/scissors.jpg');
-  background-size: cover;    
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 
 .lizard {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Anton', sans-serif;
-  font-size: 40px;
-  color: white;
-  height: 75px;
-  width: 175px;
-  border-radius: 70px;
-  -moz-border-radius: 70px;
-  -webkit-border-radius: 70px;
-  -khtml-border-radius: 70px;
-  margin: 4px;
-  outline: none;
-  cursor: pointer;
   background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/lizard.jpg');
-  background-size: cover;    
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 
 .spock {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Anton', sans-serif;
-  font-size: 40px;
-  color: white;
-  height: 75px;
-  width: 175px;
-  border-radius: 70px;
-  -moz-border-radius: 70px;
-  -webkit-border-radius: 70px;
-  -khtml-border-radius: 70px;
-  margin: 4px;
-  outline: none;
-  cursor: pointer;
   background-image: url('https://s3-us-west-1.amazonaws.com/coffeegodddpublic/assets/spock.jpg');
-  background-size: cover;    
-  background-repeat: no-repeat;
-  background-position: center center;
 }
+
 
 .info {
   text-align: center;
@@ -143,87 +71,19 @@
   opacity: .5;
 }
 
-.rock:hover {
+.rock:hover, .paper:hover, .scissors:hover, .lizard:hover, .spock:hover {
   -webkit-box-shadow: 0 0 20px #9bcfff;
   box-shadow: 0 0 20px #9bcfff;
 }
 
-.paper:hover {
-  -webkit-box-shadow: 0 0 20px #9bcfff;
-  box-shadow: 0 0 20px #9bcfff;
-}
-
-.scissors:hover {
-  -webkit-box-shadow: 0 0 20px #9bcfff;
-  box-shadow: 0 0 20px #9bcfff;
-}
-
-.lizard:hover {
-  -webkit-box-shadow: 0 0 20px #9bcfff;
-  box-shadow: 0 0 20px #9bcfff;
-}
-
-.spock:hover {
-  -webkit-box-shadow: 0 0 20px #9bcfff;
-  box-shadow: 0 0 20px #9bcfff;
-}
-
-.rock:active {
-  color: #a5dfff;
-  -webkit-box-shadow: 0 0 20px #9bcfff;
-  box-shadow: 0 0 40px #9bcfff;
-}
-
-.paper:active {
-  color: #a5dfff;
-  -webkit-box-shadow: 0 0 20px #9bcfff;
-  box-shadow: 0 0 40px #9bcfff;
-}
-
-.scissors:active {
-  color: #a5dfff;
-  -webkit-box-shadow: 0 0 20px #9bcfff;
-  box-shadow: 0 0 40px #9bcfff;
-}
-
-.lizard:active {
-  color: #a5dfff;
-  -webkit-box-shadow: 0 0 20px #9bcfff;
-  box-shadow: 0 0 40px #9bcfff;
-}
-
-.spock:active {
+.rock:active, .paper:active, .scissors:active, .lizard:active, .spock:active {
   color: #a5dfff;
   -webkit-box-shadow: 0 0 20px #9bcfff;
   box-shadow: 0 0 40px #9bcfff;
 }
 
 @media only screen and (max-width: 768px) {
-  .rock {
-    height: 50px;
-    width: 120px;
-    font-size: 25px;
-  }
-
-  .paper {
-    height: 50px;
-    width: 120px;
-    font-size: 25px;
-  }
-
-  .scissors {
-    height: 50px;
-    width: 120px;
-    font-size: 25px;
-  }
-
-  .lizard {
-    height: 50px;
-    width: 120px;
-    font-size: 25px;
-  }
-
-  .spock {
+  .rock, .paper, .scissors, .lizard, .spock {
     height: 50px;
     width: 120px;
     font-size: 25px;
